@@ -39,4 +39,15 @@ if('serviceWorker' in navigator){
           console.log('Service worker registrado');
         }
     }
+    const bannerInstall = document.querySelector('#banner-install');
+    bannerInstall.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const response = await deferredPrompt.userChoice;
+        if (response.outcome === 'dismissed') {
+          console.error('El usuario cancelo la instalación');
+        }
+      }
+    });
+
   });
